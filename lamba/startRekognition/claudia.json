@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "rekognition-executor",
+    "name": "rekognition",
+    "region": "us-east-1"
+  }
+}

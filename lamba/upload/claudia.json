@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "eagleeye-upload-executor",
+    "name": "eagleeye-upload",
+    "region": "us-east-1"
+  }
+}
