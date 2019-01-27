@@ -3,7 +3,7 @@ const Promise = require('bluebird')
 
 const rek = new AWS.Rekognition()
 
-const getTracking = (JobId) => {
+const getTracking = JobId => {
   return new Promise((resolve,reject)=>{
     rek.getPersonTracking({JobId},(err, data) => {
       if (err) reject(err)
@@ -12,7 +12,7 @@ const getTracking = (JobId) => {
   })
 }
 
-const getFaceDetect = (JobId) => {
+const getFaceDetect = JobId => {
   return new Promise((resolve, reject)=>{
     rek.getFaceDetection({JobId},(err, data) => {
       if (err) reject(err)
@@ -21,7 +21,7 @@ const getFaceDetect = (JobId) => {
   })
 }
 
-const getLabelDetect = (JobId) => {
+const getLabelDetect = JobId => {
   return new Promise((resolve, reject)=>{
     rek.getLabelDetection({JobId},(err, data) => {
       if (err) reject(err)
