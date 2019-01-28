@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "describefaces-executor",
+    "name": "describefaces",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "z324d5afl4"
+  }
+}
