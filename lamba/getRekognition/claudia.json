@@ -1,7 +1,0 @@
-{
-  "lambda": {
-    "role": "getrekognition-executor",
-    "name": "getrekognition",
-    "region": "us-east-1"
-  }
-}

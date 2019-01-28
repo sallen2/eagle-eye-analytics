@@ -1,5 +1,5 @@
 {
-  "name": "getrekognition",
+  "name": "dataretrieve",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.392.0",
-    "bluebird": "^3.5.3"
+    "aws-sdk": "^2.395.0"
   }
 }
