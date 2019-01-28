@@ -45,13 +45,23 @@ console.log(xaxis, teetime)
                 x: xaxis,
                 y: teetime,
                 fill: "tozeroy",
-                type: "scatter"
+                type: "scatter",
+                fillcolor: "green",
+                name: "PeopleCounting",
+                maxpoints: 10000,
+                dx: 5,
+                size: 5
             };
             var trace2 = {
                 x: [1, 2, 3, 4, 5, 6],
                 y: [3, 5, 1, 7, 4, 4],
                 fill: "tonexty",
-                type: "scatter"
+                type: "scatter",
+                fillcolor: "pink",
+                name: "test",
+                maxpoints: 10000,
+                dx: 5,
+                size: 5
             };
             var data = [trace1, trace2];
             var graphOptions = {filename: "basic-area", fileopt: "overwrite"};
