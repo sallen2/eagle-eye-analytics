@@ -1,7 +1,12 @@
 var request = require("request");
+var d3 = require("d3");
 var arr=[];
 var rem=[];
 var dirt = [];
+const d3nLine = require('d3node-linechart');
+const line = d3nLine(data, selector, container, style)
+const output = require("d3node-output");
+var teetime=[];
 request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", function(error, response, body) {
 
         if (!error && response.statusCode === 200) {
@@ -29,6 +34,15 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             console.log("People in each photo:");
 
             console.log(counts)
+            teetime = Object.values(counts);
+            console.log(teetime)
+
+            // for (var r=0; r<dirt.length; r++){
+            //     var teetime = [];
+            //     teetime.push(counts[r]);
+            // }
+            // console.log(teetime)
+
 // var unique = [...new Set(arr)];
 // console.log(unique);
 // for (var j=0; j<arr.length; j++){
