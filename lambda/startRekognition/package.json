@@ -1,0 +1,17 @@
+{
+  "name": "rekognition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.392.0",
+    "bluebird": "^3.5.3",
+    "dynamoose": "^1.5.0",
+    "moment": "^2.24.0"
+  }
+}
