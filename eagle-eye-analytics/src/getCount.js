@@ -40,34 +40,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             for (var t =0; t<teetime.length; t++){
                 xaxis.push(t);
             }
-console.log(xaxis, teetime)
-            var trace1 = {
-                x: xaxis,
-                y: teetime,
-                fill: "tozeroy",
-                type: "scatter",
-                fillcolor: "green",
-                name: "PeopleCounting",
-                maxpoints: 10000,
-                dx: 5,
-                size: 5
-            };
-            var trace2 = {
-                x: [1, 2, 3, 4, 5, 6],
-                y: [3, 5, 1, 7, 4, 4],
-                fill: "tonexty",
-                type: "scatter",
-                fillcolor: "pink",
-                name: "test",
-                maxpoints: 10000,
-                dx: 5,
-                size: 5
-            };
-            var data = [trace1, trace2];
-            var graphOptions = {filename: "basic-area", fileopt: "overwrite"};
-            plotly.plot(data, graphOptions, function (err, msg) {
-                console.log(msg);
-            });
+
 
             // for (var r=0; r<dirt.length; r++){
             //     var teetime = [];
@@ -82,5 +55,33 @@ console.log(xaxis, teetime)
 //
 //   })
         }
+    console.log(xaxis, teetime)
+    var trace1 = {
+        x: xaxis,
+        y: teetime,
+        fill: "tozeroy",
+        type: "scatter",
+        fillcolor: "green",
+        name: "PeopleCounting",
+        maxpoints: 10000,
+        dx: 5,
+        size: 5
+    };
+    var trace2 = {
+        x: [1, 2, 3, 4, 5, 6],
+        y: [3, 5, 1, 7, 4, 4],
+        fill: "tonexty",
+        type: "scatter",
+        fillcolor: "pink",
+        name: "test",
+        maxpoints: 10000,
+        dx: 5,
+        size: 5
+    };
+    var data = [trace1, trace2];
+    var graphOptions = {filename: "basic-area", fileopt: "overwrite"};
+    plotly.plot(data, graphOptions, function (err, msg) {
+        console.log(msg);
+    });
     }
 );
