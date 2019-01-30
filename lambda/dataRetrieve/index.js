@@ -53,9 +53,9 @@ const returnFaces4 = () => {
 
 exports.handler = async (event, context) => {
   data.cam1 = await returnFaces1()
-  data.cam2 = await returnFaces1()
-  data.cam3 = await returnFaces1()
-  data.cam4 = await returnFaces1()
+  data.cam2 = await returnFaces2()
+  data.cam3 = await returnFaces3()
+  data.cam4 = await returnFaces4()
   const response = {
     statusCode: 200,
     body: JSON.stringify(data),
