@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bluebird": "^3.5.3",
     "d3": "^5.7.0",
     "d3-line-chart": "^0.1.2",
     "d3node-linechart": "^0.1.2",
