@@ -15,10 +15,21 @@ const deleteFaces = (deleteIds, CollectionId) => {
       }
       rek.deleteFaces(params, (err, data) => {
         if (err) reject(err)
-        else resolve(data)
+        else{
+          console.log('faceids deleted', data)
+        } resolve(data)
       })
     })
   }
+}
+
+const mapFaces = (FaceMatches)=>{
+  return new Promise((resolve,reject)=>{
+   const faceIds = FaceMatches.map(face=>{
+      return face.Face.FaceId
+    })
+    resolve(faceIds)
+  })
 }
 
 const searchFaces = (FaceId, CollectionId, index)=>{
@@ -27,13 +38,16 @@ const searchFaces = (FaceId, CollectionId, index)=>{
     const params = {
       CollectionId,
       FaceId: `${FaceId}`,
-      FaceMatchThreshold: 90,
+      FaceMatchThreshold: 70,
     }
     rek.searchFaces(params, (err, data) => {
       if (err) throw(err, err.stack);
       else {
         // TODO: Break into another function to get all face ids back
-        resolve(data.FaceMatches)
+        mapFaces(data.FaceMatches)
+        .then(faceIds=>{
+          resolve(faceIds)
+        })
       };
     })
   })
@@ -44,7 +58,11 @@ const searchReturnFaces = async (faceIds, CollectionId) => {
     const dataArr = faceIds.map(async (FaceId, index) => {
       console.log(FaceId)
       const data = await searchFaces(FaceId, CollectionId, index)
-      console.log(data)
+      return(data)
+    })
+    Promise.all(dataArr)
+    .then(data=>{
+      resolve(data[0])
     })
   })
 }
@@ -108,9 +126,7 @@ const indexFaces = async (img, Bucket, CollectionId,num) => {
             */
             console.log(faceIds)
             const deleteIds = await searchReturnFaces(faceIds, CollectionId)
-            console.log(deleteIds)
-            // TODO: Send to delete function
-            // const data = await deleteFaces(deleteIds, CollectionId)
+            const data = await deleteFaces(deleteIds, CollectionId)
             resolve(data)
           } catch (err) {
             console.log(err)
