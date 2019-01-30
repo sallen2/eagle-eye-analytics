@@ -4,18 +4,11 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
-<<<<<<< HEAD
-    "axios": "^0.18.0",
-    "cors": "^2.8.5",
-    "event-source-polyfill": "^1.0.5",
-    "eventsource": "^1.0.7",
-=======
     "d3": "^5.7.0",
     "d3-line-chart": "^0.1.2",
     "d3node-linechart": "^0.1.2",
     "date-and-time": "^0.6.3",
     "plotly": "^1.0.6",
->>>>>>> 87849a2b184c8b9f0e773aa1ca2a7c88192303c6
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3",
