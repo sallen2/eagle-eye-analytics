@@ -6,10 +6,10 @@ import Websocket from 'react-websocket';
 // var request = require("request");
 // var arr=[];
 // request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", function(error, response, body) {
-
+//
 //         if (!error && response.statusCode === 200) {
-
-
+//
+//
 //             for (var i=0; i<JSON.parse(body).Faces.length; i++){
 //                 // console.log(JSON.parse(body).Faces[i].ImageId);
 //                 arr.push(JSON.parse(body).Faces[i].ImageId);
