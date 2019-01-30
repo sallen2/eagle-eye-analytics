@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Websocket from 'react-websocket';
 
 // var request = require("request");
 // var arr=[];
@@ -30,23 +30,27 @@ import './App.css';
 // );
 
 class App extends Component {
+
+  logStuff = data =>{
+    console.log(data)
+  }
+
+  handleOpen()  {
+    alert("connected:)");
+  }
+
+  getData = (message) =>{
+    this.refWebSocket.sendMessage(message);
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <button onClick={()=>{this.getData({"action":"getdata"})}}>test</button>
+        <Websocket url='wss://3un8zfqg4l.execute-api.us-east-1.amazonaws.com/beta'
+              onMessage={this.logStuff} onOpen={this.handleOpen} ref={Websocket => {
+                this.refWebSocket = Websocket;
+              }}/>
       </div>
     );
   }
