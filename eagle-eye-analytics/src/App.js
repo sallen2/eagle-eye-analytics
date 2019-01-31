@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Websocket from 'react-websocket';
+import Header from './Components/Header';
+import Hook from './Components/Hook';
+import Description from './Components/Description';
 
 // var request = require("request");
 // var arr=[];
@@ -45,12 +48,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-      <button onClick={()=>{this.getData({"action":"getdata"})}}>test</button>
+      <div>
+        <Header />
+        <Hook />
+        {/* <Description /> */}
+
+      {/* <button onClick={()=>{this.getData({"action":"getdata"})}}>test</button>
         <Websocket url='wss://3un8zfqg4l.execute-api.us-east-1.amazonaws.com/beta'
               onMessage={this.logStuff} onOpen={this.handleOpen} ref={Websocket => {
                 this.refWebSocket = Websocket;
-              }}/>
+              }}/> */}
       </div>
     );
   }
