@@ -22,13 +22,14 @@ const styles = {
         height: "75vh",
         width: "auto",
     }
+
 };
 
 function Hook(props) {
     const { classes } = props;
     return (
         <div className={classes.background}>
-            <img style={{ display: 'none' }} src={backgroundImage} alt="" />
+            <img style={{ display: 'none' }} src={backgroundImage} alt=""/>
             <Typography className={classes.header} color="inherit" align="center" variant="h2" marked="center">
                 Free The Data
             </Typography>
