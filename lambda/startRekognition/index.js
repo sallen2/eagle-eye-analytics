@@ -21,19 +21,29 @@ const deleteFaces = (deleteIds, CollectionId) => {
   }
 }
 
+const mapFaces = (FaceMatches)=>{
+  return new Promise((resolve,reject)=>{
+   const faceIds = FaceMatches.map(face=>{
+      return face.Face.FaceId
+    })
+    resolve(faceIds)
+  })
+}
+
 const searchFaces = (FaceId, CollectionId, index)=>{
   return new Promise((resolve,reject)=>{
-    console.log('inside of loop', FaceId)
     const params = {
       CollectionId,
       FaceId: `${FaceId}`,
-      FaceMatchThreshold: 90,
+      FaceMatchThreshold: 70,
     }
     rek.searchFaces(params, (err, data) => {
       if (err) throw(err, err.stack);
       else {
-        // TODO: Break into another function to get all face ids back
-        resolve(data.FaceMatches)
+        mapFaces(data.FaceMatches)
+        .then(faceIds=>{
+          resolve(faceIds)
+        })
       };
     })
   })
@@ -42,9 +52,12 @@ const searchFaces = (FaceId, CollectionId, index)=>{
 const searchReturnFaces = async (faceIds, CollectionId) => {
   return new Promise(async (resolve, reject) => {
     const dataArr = faceIds.map(async (FaceId, index) => {
-      console.log(FaceId)
       const data = await searchFaces(FaceId, CollectionId, index)
-      console.log(data)
+      return(data)
+    })
+    Promise.all(dataArr)
+    .then(data=>{
+      resolve(data[0])
     })
   })
 }
@@ -53,7 +66,6 @@ const indexFaces2 = (img, Bucket, CollectionId,num) => {
   return new Promise((resolve, reject) => {
     const time = moment().subtract(5, 'hours').format('LTS')
     const timestamp = time.replace(' ', '')
-    console.log(CollectionId+num)
     const params = {
       CollectionId: CollectionId+num,
       ExternalImageId: `${timestamp}`,
@@ -106,11 +118,8 @@ const indexFaces = async (img, Bucket, CollectionId,num) => {
             So, if our upload lambda function is invoked once a second, similar faces will be deleted giving
             us an accurate representation of how many people came to each booth. 
             */
-            console.log(faceIds)
             const deleteIds = await searchReturnFaces(faceIds, CollectionId)
-            console.log(deleteIds)
-            // TODO: Send to delete function
-            // const data = await deleteFaces(deleteIds, CollectionId)
+            const data = await deleteFaces(deleteIds, CollectionId)
             resolve(data)
           } catch (err) {
             console.log(err)
@@ -124,7 +133,6 @@ const indexFaces = async (img, Bucket, CollectionId,num) => {
 
 exports.handler = async (event, context) => {
   const imgName = event.Records[0].s3.object.key
-  console.log(imgName)
   try {
     let data2
     let bucketName = ''
@@ -134,7 +142,6 @@ exports.handler = async (event, context) => {
       case 'cam1.jpg':
         bucketName = 'cam1bucket'
         CollectionId = imgName.replace('.jpg', '');
-        console.log(CollectionId)
         data = await indexFaces(imgName, bucketName, CollectionId,'1');
         return data;
       case 'cam2.jpg':

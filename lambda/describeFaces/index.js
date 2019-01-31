@@ -2,7 +2,7 @@ const AWS = require('aws-sdk')
 
 const rek = new AWS.Rekognition()
 
-const describeFaces = () => {
+const describeFaces1 = () => {
   return new Promise((resolve, reject) => {
     rek.describeCollection({
       CollectionId: 'cam1'
@@ -13,9 +13,46 @@ const describeFaces = () => {
   })
 }
 
+const describeFaces2 = () => {
+  return new Promise((resolve, reject) => {
+    rek.describeCollection({
+      CollectionId: 'cam2'
+    }, (err, data) => {
+      if (err) reject(err)
+      else resolve(data)
+    })
+  })
+}
+
+const describeFaces3 = () => {
+  return new Promise((resolve, reject) => {
+    rek.describeCollection({
+      CollectionId: 'cam3'
+    }, (err, data) => {
+      if (err) reject(err)
+      else resolve(data)
+    })
+  })
+}
+
+const describeFaces4 = () => {
+  return new Promise((resolve, reject) => {
+    rek.describeCollection({
+      CollectionId: 'cam4'
+    }, (err, data) => {
+      if (err) reject(err)
+      else resolve(data)
+    })
+  })
+}
+
 exports.handler = async (event, context) =>{
   console.log(event)
-  const data = await describeFaces()
+  const data = {}
+  data.cam1 = await describeFaces1()
+  data.cam2 = await describeFaces2()
+  data.cam3 = await describeFaces3()
+  data.cam4 = await describeFaces4()
   response = {
     statusCode: 200,
     body: JSON.stringify(data)

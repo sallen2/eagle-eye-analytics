@@ -117,8 +117,8 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             y: teetime,
             fill: "tozeroy",
             type: "scatter",
-            fillcolor: "green",
-            name: "PeopleCounting",
+            fillcolor: "#395B50",
+            name: "cam1",
             maxpoints: 10000,
             dx: 5,
             size: 5
@@ -128,8 +128,8 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             y: teetime2,
             fill: "tonexty",
             type: "scatter",
-            fillcolor: "pink",
-            name: "2",
+            fillcolor: "#966B9D",
+            name: "cam2",
             maxpoints: 10000,
             dx: 5,
             size: 5
@@ -139,8 +139,8 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 y: teetime3,
                 fill: "tonexty",
                 type: "scatter",
-                fillcolor: "blue",
-                name: "3",
+                fillcolor: "#8789C0",
+                name: "cam3",
                 maxpoints: 10000,
                 dx: 5,
                 size: 5
@@ -150,8 +150,8 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 y: teetime4,
                 fill: "tonexty",
                 type: "scatter",
-                fillcolor: "red",
-                name: "4",
+                fillcolor: "#7CC6FE",
+                name: "cam4",
                 maxpoints: 10000,
                 dx: 5,
                 size: 5
@@ -163,3 +163,25 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
         });
     }}
 );
+
+request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+        var cam1 =  JSON.parse(body).cam1.FaceCount;
+        var cam2 =  JSON.parse(body).cam2.FaceCount;
+        var cam3 =  JSON.parse(body).cam3.FaceCount;
+        var cam4 =  JSON.parse(body).cam4.FaceCount;
+
+        var bardata = [
+            {
+                x: ["cam1", "cam2", "cam3", "cam4"],
+                y: [cam1, cam2, cam3, cam4],
+                marker: {color: ["#CFFFB3", "#ADE25D", "#1E91D6", "#0072BB"]},
+                type: "bar"
+            }
+        ];
+        var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
+        plotly.plot(bardata, graphOptions, function (err, msg) {
+            console.log(msg);
+        });
+    }
+});
