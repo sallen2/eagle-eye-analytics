@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Websocket from 'react-websocket';
 import Header from './Components/Header';
 import Hook from './Components/Hook';
 import Description from './Components/Description';
+import AWS from 'aws-sdk'
+import axios from 'axios'
+AWS.config.update({
+  secretAccessKey: 'd558DCqXF8DiY2NpTc47a7lymmWyhK7e0bzx8ipm',
+  accessKeyId:'AKIAI5HVLVGAELST7MTQ',
+  region: 'us-east-1'
+})
+
+const lambda = new AWS.Lambda()
+
+const s3  = new AWS.S3()
+const params = {
+  Bucket: 'eagle-eye-testing2',
+};
+s3.listObjects(params, function(err, data) {
+  if (err) console.log(err, err.stack);
+  else     console.log(data);
+});
 
 // var request = require("request");
 // var arr=[];
@@ -33,31 +49,17 @@ import Description from './Components/Description';
 // );
 
 class App extends Component {
-
-  logStuff = data =>{
-    console.log(data)
-  }
-
-  handleOpen()  {
-    alert("connected:)");
-  }
-
-  getData = (message) =>{
-    this.refWebSocket.sendMessage(message);
-  }
+componentDidMount(){
+  fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(json => console.log(json))
+}
 
   render() {
     return (
       <div>
         <Header />
         <Hook />
-        {/* <Description /> */}
-
-      {/* <button onClick={()=>{this.getData({"action":"getdata"})}}>test</button>
-        <Websocket url='wss://3un8zfqg4l.execute-api.us-east-1.amazonaws.com/beta'
-              onMessage={this.logStuff} onOpen={this.handleOpen} ref={Websocket => {
-                this.refWebSocket = Websocket;
-              }}/> */}
       </div>
     );
   }
