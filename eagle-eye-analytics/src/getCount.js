@@ -29,6 +29,10 @@ var dirt4 = [];
 var teetime4 = [];
 var counts4 = {};
 var xaxis4 = [];
+
+setInterval(function(){
+
+
 request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", function (error, response, body) {
         if (!error && response.statusCode === 200) {
             for (var i = 0; i < JSON.parse(body).cam1.Faces.length; i++) {
@@ -187,3 +191,4 @@ request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", functio
         });
     }
 });
+}, 11000);
