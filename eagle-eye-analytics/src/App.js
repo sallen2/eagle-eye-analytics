@@ -29,16 +29,41 @@ const s3 = new AWS.S3()
 class App extends Component {
 
   state = {
-    urls: []
+    urlsData: []
   }
 
-  downloadFaces = (match) => {
+  downloadFaces = match => {
     return new Promise((resolve, reject) => {
       var params = { Bucket: 'engleeyebucket', Key: `${match}` };
       s3.getSignedUrl('getObject', params, function (err, url) {
         if (err) reject(err)
         else {
-          resolve(url)
+          if (match.startsWith('cam1')) {
+            const data = {
+              url,
+              booth: 'booth1'
+            }
+            resolve(data)
+          } else if (match.startsWith('cam2')) {
+            const data = {
+              url,
+              booth: 'booth2'
+            }
+            resolve(data)
+          } else if (match.startsWith('cam3')) {
+            const data = {
+              url,
+              booth: 'booth3'
+            }
+            resolve(data)
+          } else if (match.startsWith('cam4')) {
+            const data = {
+              url,
+              booth: 'booth4'
+            }
+            resolve(data)
+          }
+          console.log('inside download', match)
         }
       });
     })
@@ -51,7 +76,7 @@ class App extends Component {
         SourceImage: {
           S3Object: {
             Bucket: 'eagle-eye-testing',
-            Name: 'willsmithtest.jpg'
+            Name: 'me.jpeg'
           }
         },
         TargetImage: {
@@ -64,11 +89,13 @@ class App extends Component {
       rek.compareFaces(params, async (err, data) => {
         if (err) reject(err)
         else {
+          console.log(data)
+          // No face matches
           if (data.FaceMatches.length === 0) {
             return
-          } else {
-            const url = await this.downloadFaces(image)
-            resolve(url)
+          } else { //face matches
+            const data = await this.downloadFaces(image)
+            resolve(data)
           }
         }
       })
@@ -86,22 +113,23 @@ class App extends Component {
         const images = data.Contents.map(obj => {
           return (obj.Key)
         })
-        const url = images.map(async img => {
-          console.log(img)
+        const urlData = images.map(async img => {
           try {
-            const url = await this.compareFaces(img)
-            return url
+            const data = await this.compareFaces(img)
+            return data
           } catch (err) {
             console.log('the error')
             console.log(err)
             throw err
           }
         })
-        Promise.all(url)
-        .then(urls=>{
-          console.log(urls)
-          this.setState({urls})
-        })
+        Promise.all(urlData)
+          .then(urlData => {
+            const urlsData = urlData.map(data => {
+              return data
+            })
+            this.setState({ urlsData })
+          })
       }
     })
   }
@@ -111,11 +139,16 @@ class App extends Component {
       <div>
         <Header />
         <Hook />
-        {this.state.urls.map((url,i) => {
-          if (url === null) {
+        {this.state.urlsData.map((data, i) => {
+          if (data.url === null) {
             return
           } else {
-            return <img key={i} alt='eagleeye' src={url} />
+            return (
+              <div key={i}>
+              <h1>{data.booth}</h1>
+              <img alt='eagleeye' src={data.url} />
+              </div>
+            )
           }
         })}
       </div>
