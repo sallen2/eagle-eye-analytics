@@ -1,5 +1,5 @@
 var request = require("request");
-var plotly = require('plotly')("usaches", "HuUTBwnwPucXrvJ0obxI");
+var plotly = require('plotly')("all22_NFL", "ff4GiZBfgbw6eIrl9l5U");
 var arr = [];
 var rem = [];
 var dirt = [];
@@ -27,8 +27,6 @@ var dirt4 = [];
 var teetime4 = [];
 var counts4 = {};
 var xaxis4 = [];
-
-setInterval(function(){
 
 
 request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", function (error, response, body) {
@@ -121,7 +119,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             y: teetime,
             fill: "tozeroy",
             type: "scatter",
-            fillcolor: "#395B50",
+            fillcolor: "#8789C0",
             name: "cam1",
             maxpoints: 10000,
             dx: 5,
@@ -130,7 +128,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
         var trace2 = {
             x: xaxis2,
             y: teetime2,
-            fill: "tonexty",
+            fill: "tozeroy",
             type: "scatter",
             fillcolor: "#966B9D",
             name: "cam2",
@@ -141,9 +139,9 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
         var trace3 = {
                 x: xaxis3,
                 y: teetime3,
-                fill: "tonexty",
+                fill: "tozeroy",
                 type: "scatter",
-                fillcolor: "#8789C0",
+                fillcolor: "#395B50",
                 name: "cam3",
                 maxpoints: 10000,
                 dx: 5,
@@ -189,4 +187,3 @@ request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", functio
         });
     }
 });
-}, 11000);
