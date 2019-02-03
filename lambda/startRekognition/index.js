@@ -3,7 +3,7 @@ const Promise = require('bluebird')
 const moment = require('moment')
 
 const rek = new AWS.Rekognition()
-
+const s3 = new AWS.S3()
 const deleteFaces = (deleteIds, CollectionId) => {
   if (deleteIds.length === 0) {
     return 'Nothing Deleted!'
@@ -34,8 +34,8 @@ const searchFaces = (FaceId, CollectionId, index)=>{
   return new Promise((resolve,reject)=>{
     const params = {
       CollectionId,
-      FaceId: `${FaceId}`,
-      FaceMatchThreshold: 70,
+      FaceId,
+      FaceMatchThreshold: 50,
     }
     rek.searchFaces(params, (err, data) => {
       if (err) throw(err, err.stack);
@@ -50,13 +50,16 @@ const searchFaces = (FaceId, CollectionId, index)=>{
 }
 
 const searchReturnFaces = async (faceIds, CollectionId) => {
+  console.log(faceIds)
   return new Promise(async (resolve, reject) => {
     const dataArr = faceIds.map(async (FaceId, index) => {
+      console.log("inside of loop",faceIds)
       const data = await searchFaces(FaceId, CollectionId, index)
       return(data)
     })
     Promise.all(dataArr)
     .then(data=>{
+      console.log(data[0])
       resolve(data[0])
     })
   })
@@ -101,8 +104,17 @@ const indexFaces = async (img, Bucket, CollectionId,num) => {
       if (err) reject(err)
       else {
         if (data.FaceRecords.length === 0) {
-          return ('no face detected')
+          console.log('no face detected')
         } else {
+          const params = {
+            Bucket: 'engleeyebucket', 
+            CopySource: `/${Bucket}/${img}`, 
+            Key: `${CollectionId}-${Math.floor(Math.random() * Math.floor(1000000))}.jpg`
+           }
+           s3.copyObject(params,(err,data)=>{
+             if(err) throw err
+             else return data
+           })
           const faceIds = data.FaceRecords.map(faces => {
             return faces.Face.FaceId
           })
@@ -119,6 +131,7 @@ const indexFaces = async (img, Bucket, CollectionId,num) => {
             us an accurate representation of how many people came to each booth. 
             */
             const deleteIds = await searchReturnFaces(faceIds, CollectionId)
+            console.log("deleteIds", deleteIds)
             const data = await deleteFaces(deleteIds, CollectionId)
             resolve(data)
           } catch (err) {

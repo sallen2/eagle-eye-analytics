@@ -5,13 +5,12 @@ const Promise = require('bluebird')
 const s3 = new aws.S3({ apiVersion: '2006-03-01' });
 
 function uploadFromStream(s3, cam, Bucket) {
-  var pass = new stream.PassThrough();
-  var params = { Bucket, Key: `${cam.name}.jpg`, Body: pass };
+  const pass = new stream.PassThrough();
+  const params = { Bucket, Key: `${cam.name}.jpg`, Body: pass };
   s3.upload(params, (err, data) => {
     if (err) throw new Error('oops something went wrong!')
     else console.log(data);
   });
-
   return pass;
 }
 
@@ -36,7 +35,7 @@ const getDevices = () => {
 
 exports.handler = async (event, context) => {
   try {
-    return Promise.map(getDevices(), async cam => {
+    return Promise.map(getDevices(), async (cam, index) => {
       if(cam.imgURL !== undefined){
         const response = await axios({
           method: 'get',

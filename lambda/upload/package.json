@@ -11,6 +11,7 @@
   "dependencies": {
     "aws-sdk": "^2.392.0",
     "axios": "^0.18.0",
-    "bluebird": "^3.5.3"
+    "bluebird": "^3.5.3",
+    "unique-names-generator": "^2.0.1"
   }
 }
