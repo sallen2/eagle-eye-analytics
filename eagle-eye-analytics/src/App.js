@@ -4,62 +4,120 @@ import Header from './Components/Header';
 import Hook from './Components/Hook';
 import Description from './Components/Description';
 import AWS from 'aws-sdk'
-import axios from 'axios'
+import Promise from 'bluebird'
+
 AWS.config.update({
   secretAccessKey: 'd558DCqXF8DiY2NpTc47a7lymmWyhK7e0bzx8ipm',
-  accessKeyId:'AKIAI5HVLVGAELST7MTQ',
+  accessKeyId: 'AKIAI5HVLVGAELST7MTQ',
   region: 'us-east-1'
 })
 
-const lambda = new AWS.Lambda()
+const rek = new AWS.Rekognition()
+const s3 = new AWS.S3()
+// const lambda = new AWS.Lambda()
 
-const s3  = new AWS.S3()
-const params = {
-  Bucket: 'eagle-eye-testing2',
-};
-s3.listObjects(params, function(err, data) {
-  if (err) console.log(err, err.stack);
-  else     console.log(data);
-});
-
-// var request = require("request");
-// var arr=[];
-// request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", function(error, response, body) {
-//
-//         if (!error && response.statusCode === 200) {
-//
-//
-//             for (var i=0; i<JSON.parse(body).Faces.length; i++){
-//                 // console.log(JSON.parse(body).Faces[i].ImageId);
-//                 arr.push(JSON.parse(body).Faces[i].ImageId);
-//             }
-//             // console.log(arr);
-//             var counts = {};
-//             arr.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-//             console.log("People in each photo:");
-//             console.log(counts)
-//             // var unique = [...new Set(arr)];
-//             // console.log(unique);
-//             // for (var j=0; j<arr.length; j++){
-//             //   unique.forEach(function(count){
-//             //
-//             //   })
-//         }
-//     }
-// );
+// // setInterval(()=>{
+// //   var params = {
+// //     FunctionName: 'eagleeye-upload'
+// //   }
+// //   lambda.invoke(params,(err, data)=>{
+// //     if(err) throw err
+// //     else console.log('invoked!')
+// //   })
+// // },1000)
 
 class App extends Component {
-componentDidMount(){
-  fetch('https://jsonplaceholder.typicode.com/todos/1')
-  .then(response => response.json())
-  .then(json => console.log(json))
-}
+
+  state = {
+    urls: []
+  }
+
+  downloadFaces = (match) => {
+    return new Promise((resolve, reject) => {
+      var params = { Bucket: 'engleeyebucket', Key: `${match}` };
+      s3.getSignedUrl('getObject', params, function (err, url) {
+        if (err) reject(err)
+        else {
+          resolve(url)
+        }
+      });
+    })
+  }
+
+  compareFaces = image => {
+    return new Promise((resolve, reject) => {
+      const params = {
+        SimilarityThreshold: 90,
+        SourceImage: {
+          S3Object: {
+            Bucket: 'eagle-eye-testing',
+            Name: 'willsmithtest.jpg'
+          }
+        },
+        TargetImage: {
+          S3Object: {
+            Bucket: 'engleeyebucket',
+            Name: image
+          }
+        }
+      }
+      rek.compareFaces(params, async (err, data) => {
+        if (err) reject(err)
+        else {
+          if (data.FaceMatches.length === 0) {
+            return
+          } else {
+            const url = await this.downloadFaces(image)
+            resolve(url)
+          }
+        }
+      })
+    })
+  }
+
+  componentDidMount() {
+    const s3 = new AWS.S3()
+    const params = {
+      Bucket: 'engleeyebucket'
+    }
+    s3.listObjectsV2(params, (err, data) => {
+      if (err) throw err
+      else {
+        const images = data.Contents.map(obj => {
+          return (obj.Key)
+        })
+        const url = images.map(async img => {
+          console.log(img)
+          try {
+            const url = await this.compareFaces(img)
+            return url
+          } catch (err) {
+            console.log('the error')
+            console.log(err)
+            throw err
+          }
+        })
+        Promise.all(url)
+        .then(urls=>{
+          console.log(urls)
+          this.setState({urls})
+        })
+      }
+    })
+  }
 
   render() {
     return (
       <div>
         <Header />
         <Hook />
+        {this.state.urls.map((url,i) => {
+          if (url === null) {
+            return
+          } else {
+            return <img key={i} alt='eagleeye' src={url} />
+          }
+        })}
       </div>
     );
   }
