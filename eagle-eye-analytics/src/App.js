@@ -7,8 +7,8 @@ import AWS from 'aws-sdk'
 import Promise from 'bluebird'
 import Webcam from 'react-webcam'
 AWS.config.update({
-  secretAccessKey: process.env.SECRET_ACCESS_KEY,
-  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
   region: 'us-east-1'
 })
 
