@@ -6,7 +6,7 @@ const data = {}
 const returnFaces1 = () => {
   return new Promise((resolve, reject) => {
     var params = {
-      CollectionId: "cam11",
+      CollectionId: "cam1",
     }
     rek.listFaces(params, (err, data) => {
       if (err) reject(err)
@@ -18,7 +18,7 @@ const returnFaces1 = () => {
 const returnFaces2 = () => {
   return new Promise((resolve, reject) => {
     var params = {
-      CollectionId: "cam22",
+      CollectionId: "cam2",
     }
     rek.listFaces(params, (err, data) => {
       if (err) reject(err)
@@ -30,7 +30,7 @@ const returnFaces2 = () => {
 const returnFaces3 = () => {
   return new Promise((resolve, reject) => {
     var params = {
-      CollectionId: "cam33",
+      CollectionId: "cam3",
     }
     rek.listFaces(params, (err, data) => {
       if (err) reject(err)
@@ -42,7 +42,7 @@ const returnFaces3 = () => {
 const returnFaces4 = () => {
   return new Promise((resolve, reject) => {
     var params = {
-      CollectionId: "cam44",
+      CollectionId: "cam4",
     }
     rek.listFaces(params, (err, data) => {
       if (err) reject(err)
