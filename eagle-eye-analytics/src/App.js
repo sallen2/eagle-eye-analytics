@@ -5,7 +5,7 @@ import Hook from './Components/Hook';
 import Description from './Components/Description';
 import AWS from 'aws-sdk'
 import Promise from 'bluebird'
-
+import Webcam from 'react-webcam'
 AWS.config.update({
   secretAccessKey: 'd558DCqXF8DiY2NpTc47a7lymmWyhK7e0bzx8ipm',
   accessKeyId: 'AKIAI5HVLVGAELST7MTQ',
@@ -69,20 +69,34 @@ class App extends Component {
     })
   }
 
-  compareFaces = image => {
+  getBinary(encodedFile) {
+    var base64Image = encodedFile.split("data:image/jpeg;base64,")[1];
+    var binaryImg = atob(base64Image);
+    var length = binaryImg.length;
+    var ab = new ArrayBuffer(length);
+    var ua = new Uint8Array(ab);
+    for (var i = 0; i < length; i++) {
+      ua[i] = binaryImg.charCodeAt(i);
+    }
+
+    var blob = new Blob([ab], {
+      type: "image/jpeg"
+    });
+
+    return ab;
+  }
+
+  compareFaces = (targetImage, sourceImage) => {
     return new Promise((resolve, reject) => {
       const params = {
         SimilarityThreshold: 90,
         SourceImage: {
-          S3Object: {
-            Bucket: 'eagle-eye-testing',
-            Name: 'me.jpeg'
-          }
+          Bytes: this.getBinary(sourceImage)
         },
         TargetImage: {
           S3Object: {
             Bucket: 'engleeyebucket',
-            Name: image
+            Name: targetImage
           }
         }
       }
@@ -94,7 +108,7 @@ class App extends Component {
           if (data.FaceMatches.length === 0) {
             return
           } else { //face matches
-            const data = await this.downloadFaces(image)
+            const data = await this.downloadFaces(targetImage)
             resolve(data)
           }
         }
@@ -102,7 +116,12 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
+  setRef = webcam => {
+    this.webcam = webcam;
+  };
+
+  capture = () => {
+    const sourceImage = this.webcam.getScreenshot();
     const s3 = new AWS.S3()
     const params = {
       Bucket: 'engleeyebucket'
@@ -113,9 +132,9 @@ class App extends Component {
         const images = data.Contents.map(obj => {
           return (obj.Key)
         })
-        const urlData = images.map(async img => {
+        const urlData = images.map(async targetImage => {
           try {
-            const data = await this.compareFaces(img)
+            const data = await this.compareFaces(targetImage, sourceImage)
             return data
           } catch (err) {
             console.log('the error')
@@ -135,10 +154,24 @@ class App extends Component {
   }
 
   render() {
+    const videoConstraints = {
+      width: 1280,
+      height: 720,
+      facingMode: "user"
+    }
     return (
       <div>
         <Header />
         <Hook />
+        <Webcam
+          audio={false}
+          height={350}
+          ref={this.setRef}
+          screenshotFormat="image/jpeg"
+          width={350}
+          videoConstraints={videoConstraints}
+        />
+        <button onClick={this.capture}>Capture photo</button>
         {this.state.urlsData.map((data, i) => {
           if (data.url === null) {
             return
