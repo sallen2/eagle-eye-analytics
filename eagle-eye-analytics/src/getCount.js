@@ -119,10 +119,10 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             y: teetime,
             fill: "tozeroy",
             type: "scatter",
-            fillcolor: "#8789C0",
+            color: "#CFFFB3",
+            fillcolor: "#CFFFB3",
             name: "cam1",
             maxpoints: 10000,
-            dx: 5,
             size: 5
         };
         var trace2 = {
@@ -130,10 +130,10 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             y: teetime2,
             fill: "tozeroy",
             type: "scatter",
-            fillcolor: "#966B9D",
+            fillcolor: "#ADE25D",
+            color: "#ADE25D",
             name: "cam2",
             maxpoints: 10000,
-            dx: 5,
             size: 5
         };
         var trace3 = {
@@ -141,10 +141,10 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 y: teetime3,
                 fill: "tozeroy",
                 type: "scatter",
-                fillcolor: "#395B50",
+                fillcolor: "#1E91D6",
+                color: "#1E91D6",
                 name: "cam3",
                 maxpoints: 10000,
-                dx: 5,
                 size: 5
             };
         var trace4 = {
@@ -152,10 +152,10 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 y: teetime4,
                 fill: "tonexty",
                 type: "scatter",
-                fillcolor: "#7CC6FE",
+                color: "#0D00A4",
+                fillcolor: "#0D00A4",
                 name: "cam4",
                 maxpoints: 10000,
-                dx: 5,
                 size: 5
             };
         var data = [trace1, trace2, trace3, trace4];
@@ -163,6 +163,18 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
         plotly.plot(data, graphOptions, function (err, msg) {
             console.log(msg);
         });
+        var circdata = [{
+                values: [JSON.parse(body).cam1.Faces.length, JSON.parse(body).cam2.Faces.length, JSON.parse(body).cam3.Faces.length, JSON.parse(body).cam4.Faces.length],
+                labels: ['cam1', 'cam2', 'cam3', 'cam4'],
+                marker: {
+                    colors: ["#CFFFB3", "#ADE25D", "#1E91D6", "#0D00A4"]},
+                type: 'pie'
+
+            }];
+            var graphOptions = {filename: "basic-pie", fileopt: "overwrite"};
+            plotly.plot(circdata, graphOptions, function (err, msg) {
+                console.log(msg)
+            });
     }}
 );
 
@@ -173,17 +185,18 @@ request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", functio
         var cam3 =  JSON.parse(body).cam3.FaceCount;
         var cam4 =  JSON.parse(body).cam4.FaceCount;
 
-        var bardata = [
-            {
-                x: ["cam1", "cam2", "cam3", "cam4"],
-                y: [cam1, cam2, cam3, cam4],
-                marker: {color: ["#CFFFB3", "#ADE25D", "#1E91D6", "#0072BB"]},
-                type: "bar"
-            }
-        ];
-        var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
-        plotly.plot(bardata, graphOptions, function (err, msg) {
-            console.log(msg);
-        });
+        // var bardata = [
+        //     {
+        //         x: ["cam1", "cam2", "cam3", "cam4"],
+        //         y: [cam1, cam2, cam3, cam4],
+        //         marker: {color: ["#CFFFB3", "#ADE25D", "#1E91D6", "#0D00A4"]},
+        //         type: "bar"
+        //     }
+        // ];
+        // var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
+        // plotly.plot(bardata, graphOptions, function (err, msg) {
+        //     console.log(msg);
+        // });
+
     }
 });
