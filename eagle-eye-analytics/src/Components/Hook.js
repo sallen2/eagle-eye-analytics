@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
+
 const backgroundImage =
     'https://bitcoinist.com/wp-content/uploads/2018/10/shutterstock_567338095-e1540273758803.jpg';
 
