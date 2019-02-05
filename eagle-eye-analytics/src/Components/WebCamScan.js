@@ -179,7 +179,7 @@ class WebCamScan extends Component {
           width={350}
           videoConstraints={videoConstraints}
         />
-        <Button variant="outlined" color="primary" onClick={this.capture}>Capture photo</Button>
+        <Button variant="outlined" color="primary" onClick={this.capture}>Scan Face</Button>
         {this.state.urlsData.map((data, i) => {
           if (data.url === null) {
             return
