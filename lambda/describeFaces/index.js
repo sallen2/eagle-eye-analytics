@@ -5,10 +5,14 @@ const rek = new AWS.Rekognition()
 const describeFaces1 = () => {
   return new Promise((resolve, reject) => {
     rek.describeCollection({
-      CollectionId: 'cam1'
+      CollectionId: 'cam11'
     }, (err, data) => {
       if (err) reject(err)
-      else resolve(data)
+      else{
+        console.log(data.FaceCount)
+        resolve(data)
+      } 
+
     })
   })
 }
@@ -16,7 +20,7 @@ const describeFaces1 = () => {
 const describeFaces2 = () => {
   return new Promise((resolve, reject) => {
     rek.describeCollection({
-      CollectionId: 'cam2'
+      CollectionId: 'cam22'
     }, (err, data) => {
       if (err) reject(err)
       else resolve(data)
@@ -27,7 +31,7 @@ const describeFaces2 = () => {
 const describeFaces3 = () => {
   return new Promise((resolve, reject) => {
     rek.describeCollection({
-      CollectionId: 'cam3'
+      CollectionId: 'cam33'
     }, (err, data) => {
       if (err) reject(err)
       else resolve(data)
@@ -38,7 +42,7 @@ const describeFaces3 = () => {
 const describeFaces4 = () => {
   return new Promise((resolve, reject) => {
     rek.describeCollection({
-      CollectionId: 'cam4'
+      CollectionId: 'cam44'
     }, (err, data) => {
       if (err) reject(err)
       else resolve(data)
