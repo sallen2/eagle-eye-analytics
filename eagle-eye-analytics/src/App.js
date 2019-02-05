@@ -163,7 +163,6 @@ class App extends Component {
       <div>
         <Header />
         <Hook />
-// <<<<<<< HEAD
         <Description />
 
       {/* <button onClick={()=>{this.getData({"action":"getdata"})}}>test</button>
@@ -171,7 +170,6 @@ class App extends Component {
               onMessage={this.logStuff} onOpen={this.handleOpen} ref={Websocket => {
                 this.refWebSocket = Websocket;
               }}/> */}
-=======
         <Webcam
           audio={false}
           height={350}
@@ -193,7 +191,6 @@ class App extends Component {
             )
           }
         })}
->>>>>>> ed95ce061f31256f6db5e615b0c71acb9bb6a3ec
       </div>
     );
   }
