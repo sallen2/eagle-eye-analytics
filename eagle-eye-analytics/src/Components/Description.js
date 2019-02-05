@@ -21,7 +21,7 @@ const styles = theme => ({
     },
     text: {
         lineHeight: 2,
-        paddingTop: "10vh"      
+        paddingTop: "5vh"      
     },
     card: {
         // maxWidth: 345,
@@ -37,7 +37,7 @@ function Description(props) {
     return (
         <div className={classes.root}>
             <Grid container spacing={40}>
-                <Grid item xs={6}>
+                <Grid item xs>
                     <Card className={classes.card}>
                         <CardActionArea>
                             <CardMedia
@@ -48,7 +48,7 @@ function Description(props) {
                         </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs>
                     <div className={classes.paper}>
                         <Typography className={classes.text} variant="h5">
                             Eagle Eye Analytics is an area analysis software designed
