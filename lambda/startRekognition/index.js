@@ -106,16 +106,16 @@ const indexFaces = async (img, Bucket, CollectionId,num) => {
         if (data.FaceRecords.length === 0) {
           console.log('no face detected')
         } else {
-          const params = {
-            Bucket: 'engleeyebucket', 
-            CopySource: `/${Bucket}/${img}`, 
-            Key: `${CollectionId}-${Math.floor(Math.random() * Math.floor(1000000))}.jpg`
-           }
-           s3.copyObject(params,(err,data)=>{
-             if(err) throw err
-             else return data
-           })
           const faceIds = data.FaceRecords.map(faces => {
+            const params = {
+              Bucket: 'engleeyebucket', 
+              CopySource: `/${Bucket}/${img}`, 
+              Key: `${faces.Face.ImageId}.jpg`
+             }
+             s3.copyObject(params,(err,data)=>{
+               if(err) throw err
+               else console.log(data)
+             })
             return faces.Face.FaceId
           })
           try {

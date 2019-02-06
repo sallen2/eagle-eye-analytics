@@ -19,6 +19,8 @@ class App extends Component {
     this.setState({ showCam: !this.state.showCam })
   }
 
+
+
   render() {
     return (
       <div>
