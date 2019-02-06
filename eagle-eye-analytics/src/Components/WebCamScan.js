@@ -25,7 +25,7 @@ class WebCamScan extends Component {
   startEagleEye = () => {
     this.setState({ eagleStart: !this.state.eagleStart })
     let stopInterval = setInterval(() => {
-      if(this.state.eagleStart){
+      if (this.state.eagleStart) {
         console.log('invoked')
         var params = {
           FunctionName: 'eagleeye-upload'
@@ -34,11 +34,11 @@ class WebCamScan extends Component {
           if (err) throw err
           else console.log('invoked!')
         })
-      }else{
+      } else {
         console.log('stop')
         clearInterval(stopInterval)
       }
-    }, 1000)
+    }, 12000)
   }
 
   downloadFaces = match => {
@@ -52,6 +52,7 @@ class WebCamScan extends Component {
               url,
               booth: 'booth1'
             }
+            console.log(data)
             resolve(data)
           } else if (match.startsWith('cam2')) {
             const data = {
@@ -72,7 +73,6 @@ class WebCamScan extends Component {
             }
             resolve(data)
           }
-          console.log('inside download', match)
         }
       });
     })
@@ -95,31 +95,43 @@ class WebCamScan extends Component {
     return ab;
   }
 
-  compareFaces = (targetImage, sourceImage) => {
+  getImages = async (ImageId) =>{
+    const obj = {
+      ImageId
+    }
+    const params = {
+      ClientContext: new Buffer.from(JSON.stringify(obj)).toString('base64'), 
+      FunctionName: "getimages", 
+      InvocationType: "RequestResponse", 
+     };
+    return new Promise((resolve,reject)=>{
+      lambda.invoke(params,(err,data)=>{
+        if(err){
+          console.log(err, err.stack)
+          reject(err)
+        }else{
+          resolve(data)
+        }
+      })
+    })
+  }
+
+  compareFaces = (CollectionId, sourceImage) => {
     return new Promise((resolve, reject) => {
       const params = {
-        SimilarityThreshold: 90,
-        SourceImage: {
+        CollectionId,
+        Image: {
           Bytes: this.getBinary(sourceImage)
         },
-        TargetImage: {
-          S3Object: {
-            Bucket: 'engleeyebucket',
-            Name: targetImage
-          }
-        }
+        MaxFaces: 5
       }
-      rek.compareFaces(params, async (err, data) => {
-        if (err) reject(err)
+      rek.searchFacesByImage(params, function (err, data) {
+        if (err) {
+          console.log(err, err.stack);
+          reject(err)
+        }
         else {
-          console.log(data)
-          // No face matches
-          if (data.FaceMatches.length === 0) {
-            return
-          } else { //face matches
-            const data = await this.downloadFaces(targetImage)
-            resolve(data)
-          }
+          resolve(data)
         }
       })
     })
@@ -129,37 +141,56 @@ class WebCamScan extends Component {
     this.webcam = webcam;
   };
 
-  capture = () => {
-    const sourceImage = this.webcam.getScreenshot();
-    const s3 = new AWS.S3()
-    const params = {
-      Bucket: 'engleeyebucket'
+  resetCollection = () =>{
+    var params = {
+      FunctionName: 'resetcollection'
     }
-    s3.listObjectsV2(params, (err, data) => {
-      if (err) throw err
-      else {
-        const images = data.Contents.map(obj => {
-          return (obj.Key)
-        })
-        const urlData = images.map(async targetImage => {
-          try {
-            const data = await this.compareFaces(targetImage, sourceImage)
-            return data
-          } catch (err) {
-            console.log('the error')
-            console.log(err)
-            throw err
-          }
-        })
-        Promise.all(urlData)
-          .then(urlData => {
-            const urlsData = urlData.map(data => {
-              return data
-            })
-            this.setState({ urlsData })
-          })
+    lambda.invoke(params, (err,data)=>{
+      if(err){
+        console.log(err)
+        throw err
+      }else{
+        console.log(data)
       }
     })
+  }
+
+  capture = () => {
+    const arr = ['cam11', 'cam22', 'cam33', 'cam44']
+    console.log('captured')
+    const sourceImage = this.webcam.getScreenshot();
+    const s3 = new AWS.S3()
+    Promise.all(arr.map(async CollectionId => {
+      try{
+        const data = await this.compareFaces(CollectionId, sourceImage)
+        return data
+      }catch(err){
+        console.log(err)
+        throw err
+      }
+    }))
+      .then(async data => {
+        const ImageId = data.map(imageId => {
+          if (imageId.FaceMatches.length === 0) {
+            return []
+          } else {
+            return imageId.FaceMatches.map(faces => {
+              return faces.Face.ImageId
+            })
+          }
+        })
+        try{
+          console.log(ImageId)
+          const data = await this.getImages(ImageId)
+          return data
+        }catch(err){
+          console.log(err)
+          throw err
+        }
+      })
+      .then(data=>{
+        console.log(data)
+      })
   }
 
   render() {
@@ -170,13 +201,14 @@ class WebCamScan extends Component {
     }
     return (
       <div>
+        <Button variant="outlined" color="primary" onClick={this.resetCollection}>Reset Collection</Button>
         <Button variant="outlined" color="primary" onClick={this.startEagleEye}>Start Eagle Eye</Button>
         <Webcam
           audio={false}
-          height={350}
+          height={700}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={350}
+          width={700}
           videoConstraints={videoConstraints}
         />
         <Button variant="outlined" color="primary" onClick={this.capture}>Scan Face</Button>
