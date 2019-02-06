@@ -178,12 +178,12 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
     }}
 );
 
-request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-        var cam1 =  JSON.parse(body).cam1.FaceCount;
-        var cam2 =  JSON.parse(body).cam2.FaceCount;
-        var cam3 =  JSON.parse(body).cam3.FaceCount;
-        var cam4 =  JSON.parse(body).cam4.FaceCount;
+// request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", function (error, response, body) {
+//     if (!error && response.statusCode === 200) {
+//         var cam1 =  JSON.parse(body).cam1.FaceCount;
+//         var cam2 =  JSON.parse(body).cam2.FaceCount;
+//         var cam3 =  JSON.parse(body).cam3.FaceCount;
+//         var cam4 =  JSON.parse(body).cam4.FaceCount;
 
         // var bardata = [
         //     {
@@ -197,6 +197,3 @@ request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", functio
         // plotly.plot(bardata, graphOptions, function (err, msg) {
         //     console.log(msg);
         // });
-
-    }
-});
