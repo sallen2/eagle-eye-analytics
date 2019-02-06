@@ -5,6 +5,7 @@ import Hook from './Components/Hook';
 import WebCamScan from './Components/WebCamScan';
 import Button from '@material-ui/core/Button';
 import Description from './Components/Description';
+import AWS from 'aws-sdk'
 
 class App extends Component {
 
@@ -15,6 +16,8 @@ class App extends Component {
   showCam = () => {
     this.setState({ showCam: !this.state.showCam })
   }
+
+
 
   render() {
     return (

@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "resetcollection-executor",
+    "name": "resetcollection",
+    "region": "us-east-1"
+  }
+}

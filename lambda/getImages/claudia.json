@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "getimages-executor",
+    "name": "getimages",
+    "region": "us-east-1"
+  }
+}
