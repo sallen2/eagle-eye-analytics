@@ -197,6 +197,3 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
         // plotly.plot(bardata, graphOptions, function (err, msg) {
         //     console.log(msg);
         // });
-
-    }
-});
