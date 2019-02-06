@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {Grid, Typography, Card, CardActionArea, CardMedia} from '@material-ui/core/';
-import peopleTrackingImage from '../Assets/amazonRekognition.jpg'
+import phoneImage from '../Assets/iphoneRekognition.jpg'
 import prismBackground from '../Assets/prism.png'
 
 
@@ -36,35 +36,33 @@ const styles = theme => ({
     }
 });
 
-function Description(props) {
+function HowItWorks(props) {
     const { classes } = props;
 
     return (
-        <div className={classes.root} id="Description">
+        <div className={classes.root} id="How">
             <Grid container spacing={40}>
+            <Grid item xs={12} md={6}>
+                    <div className={classes.paper}>
+                        <Typography className={classes.text} variant="h5">
+                            Eagle Eye's Proprietary algorithms return a detailed analysis of how many people
+                            were in each area at each time, as well as an aggregate number of unique people who
+                            visit each area, tabulated in real time. Eagle Eye Analytics can also take a live
+                            photo of a person and produce an album of thumbnails that were captured containing
+                            that particular person.
+                        </Typography>
+                    </div>
+                </Grid>
                 <Grid item xs={12} md={6}>
                     <Card className={classes.card}>
                         <CardActionArea>
                             <CardMedia
                             className={classes.media}
-                            image={peopleTrackingImage}
+                            image={phoneImage}
                             title=""
                             />
                         </CardActionArea>
                     </Card>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <div className={classes.paper}>
-                        <Typography className={classes.text} variant="h5">
-                            Eagle Eye Analytics is an area analysis software designed
-                            to help users determine crowd size over time at designated
-                            areas. Our team built a custom  API for Netgear Arlo cameras
-                            which allows recorded videos and their thumbnails to be
-                            analyzed by AWS Rekognition. Using data returned by
-                            Rekogntion, Eagle Eye's Proprietary algorithms return a detailed
-                            analysis of how many people were in each area at each time, in real time.
-                        </Typography>
-                    </div>
                 </Grid>
             </Grid>
         </div>
@@ -72,8 +70,8 @@ function Description(props) {
     );
 }
 
-Description.propTypes = {
+HowItWorks.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Description);
+export default withStyles(styles)(HowItWorks);

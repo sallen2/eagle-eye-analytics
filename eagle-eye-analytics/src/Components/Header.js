@@ -15,6 +15,10 @@ const styles = {
   },
   color: {
     backgroundColor: "#282829"
+  },
+  links: {
+    textDecoration: "none",
+    color: "white"
   }
 };
 
@@ -27,9 +31,9 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Eagle Eye Analytics
           </Typography>
-          <Button color="inherit">What</Button>
-          <Button color="inherit">Why</Button>
-          <Button color="inherit">Who</Button>
+          <Button color="inherit"><a className={classes.links} href="#Description">What</a></Button>
+          <Button color="inherit"><a className={classes.links} href="#How">How</a></Button>
+          <Button color="inherit"><a className={classes.links} href="#Cams">Cams</a></Button>
         </Toolbar>
       </AppBar>
     </div>
