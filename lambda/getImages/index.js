@@ -17,22 +17,22 @@ const getUrls = (ImageId) => {
 }
 
 exports.handler = (event, context, callback) => {
-  Promise.all(context.clientContext.ImageId.map(ImageIds=>{
+  Promise.all(context.clientContext.ImageId.map(ImageIds => {
     return Promise.all(ImageIds.map(async imageId => {
-      try{
+      try {
         const url = await getUrls(imageId)
         return url
-      }catch(err){
+      } catch (err) {
         console.log(err)
         throw err
-      } 
+      }
     }))
-    .then(url=>{
-      return url
-    })
+      .then(url => {
+        return url
+      })
   }))
-  .then(ImgIds=>{
-    console.log('the img ids',ImgIds)
-    callback(null, ImgIds)
-  })
+    .then(ImgIds => {
+      console.log('the img ids', ImgIds)
+      callback(null, ImgIds)
+    })
 }
