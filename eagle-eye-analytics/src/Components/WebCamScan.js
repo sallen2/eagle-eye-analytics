@@ -96,21 +96,21 @@ class WebCamScan extends Component {
     return ab;
   }
 
-  getImages = async (ImageId) =>{
+  getImages = async (ImageId) => {
     const obj = {
       ImageId
     }
     const params = {
-      ClientContext: new Buffer.from(JSON.stringify(obj)).toString('base64'), 
-      FunctionName: "getimages", 
-      InvocationType: "RequestResponse", 
-     };
-    return new Promise((resolve,reject)=>{
-      lambda.invoke(params,(err,data)=>{
-        if(err){
+      ClientContext: new Buffer.from(JSON.stringify(obj)).toString('base64'),
+      FunctionName: "getimages",
+      InvocationType: "RequestResponse",
+    };
+    return new Promise((resolve, reject) => {
+      lambda.invoke(params, (err, data) => {
+        if (err) {
           console.log(err, err.stack)
           reject(err)
-        }else{
+        } else {
           resolve(data)
         }
       })
@@ -142,15 +142,15 @@ class WebCamScan extends Component {
     this.webcam = webcam;
   };
 
-  resetCollection = () =>{
+  resetCollection = () => {
     var params = {
       FunctionName: 'resetcollection'
     }
-    lambda.invoke(params, (err,data)=>{
-      if(err){
+    lambda.invoke(params, (err, data) => {
+      if (err) {
         console.log(err)
         throw err
-      }else{
+      } else {
         console.log(data)
       }
     })
@@ -162,10 +162,10 @@ class WebCamScan extends Component {
     const sourceImage = this.webcam.getScreenshot();
     const s3 = new AWS.S3()
     Promise.all(arr.map(async CollectionId => {
-      try{
+      try {
         const data = await this.compareFaces(CollectionId, sourceImage)
         return data
-      }catch(err){
+      } catch (err) {
         console.log(err)
         throw err
       }
@@ -180,17 +180,19 @@ class WebCamScan extends Component {
             })
           }
         })
-        try{
+        try {
           console.log(ImageId)
           const data = await this.getImages(ImageId)
           return data
-        }catch(err){
+        } catch (err) {
           console.log(err)
           throw err
         }
       })
-      .then(data=>{
-        console.log(data)
+      .then(data => {
+        const urlsData = data.Payload
+        console.log(urlsData)
+        // this.setState({ urlsData })
       })
   }
 
