@@ -214,33 +214,23 @@ class WebCamScan extends Component {
           videoConstraints={videoConstraints}
         />
         <Button variant="outlined" color="primary" onClick={this.capture}>Scan Face</Button>
-        {/* {this.state.urlsData.map((data, i) => {
-          if (data.url === null) {
-            return
-          } else {
-            return (
-              <div key={i}>
-                <h1>{data.booth}</h1>
-                <img alt='eagleeye' src={data.url} />
-              </div>
-            )
-          }
-        })} */}
-        {this.state.urlsData.map((arr, booth) => {
-          if (arr.length === 0) {
-            return
-          } else {
-            return arr.map((url, i) => {
-              console.log(url)
-              return (
-                <div>
-                  <h1>Booth: {booth+1} </h1>
-                  <img key={i} alt="faces" src={url} />
-                </div>
-              )
-            })
-          }
-        })}
+        <div style={{display:"flex", flexWrap:"wrap", justifyContent: "center"}}>
+          {this.state.urlsData.map((arr, booth) => {
+            if (arr.length === 0) {
+              return
+            } else {
+              return arr.map((url, i) => {
+                console.log(url)
+                return (
+                  <div>
+                    <h1>Booth: {booth + 1} </h1>
+                    <img style={{ padding:"15px", flexDirection: "row" }} key={i} alt="faces" src={url} />
+                  </div>
+                )
+              })
+            }
+          })}
+        </div>
       </div>
     )
   }
