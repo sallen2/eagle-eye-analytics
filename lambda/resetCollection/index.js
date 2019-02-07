@@ -28,7 +28,7 @@ const resetCollection = CollectionId => {
   })
 }
 
-const arr = ["cam1", "cam2", "cam3", "cam4"]
+const arr = ["cam1", "cam11", "cam2", "cam22", "cam3", "cam33", "cam4", "cam44"]
 
 exports.handler = (event, context, callback) => {
   Promise.all(arr.map(async CollectionId => {

@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "graphrefresh-executor",
+    "name": "graphrefresh",
+    "region": "us-east-1"
+  }
+}
