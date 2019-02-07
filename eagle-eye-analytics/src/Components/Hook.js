@@ -42,7 +42,8 @@ const styles = {
         fontSize: 50,
         color: "white",
         transform: "translate(-50%,-50%)",
-        msTransform: "translate(-50%,-50%)"
+        msTransform: "translate(-50%,-50%)",
+        zIndex: 2
     }
 
 };

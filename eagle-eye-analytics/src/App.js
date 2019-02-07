@@ -6,6 +6,7 @@ import Description from './Components/Description';
 import Demo from './Components/Demo';
 import WebCamScan from './Components/WebCamScan';
 import Button from '@material-ui/core/Button';
+import HowItWorks from './Components/HowItWorks';
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
         <Header />
         <Hook />
         <Description />
+        <HowItWorks />
         <Demo />
         <div style={{ marginLeft: '25.5%' }}>
           {this.state.showCam ? <WebCamScan /> : null}
