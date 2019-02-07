@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Card, CardActionArea, CardMedia } from '@material-ui/core/';
 // import pexelIphone from '../Assets/iphoneRekognition.jpg'
 import pexelIphone from '../Assets/pexelIphone.png'
-import prismBackground from '../Assets/prism.png'
+// import prismBackground from '../Assets/prism.png'
 
 
 
@@ -13,11 +13,11 @@ import prismBackground from '../Assets/prism.png'
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        paddingTop: theme.spacing.unit * 20,
-        // paddingBottom: theme.spacing.unit * 20,
+        // paddingTop: theme.spacing.unit * 20,
+        paddingBottom: theme.spacing.unit * 20,
         paddingLeft: theme.spacing.unit * 5,
         paddingRight: theme.spacing.unit * 5,
-        backgroundColor: "lightgrey",
+        backgroundColor: "grey",
     },
     paper: {
         // color: theme.palette.text.secondary,
@@ -27,8 +27,8 @@ const styles = theme => ({
     text: {
         lineHeight: 2,
         paddingTop: "25vh",
-        position: "relative",
-        zIndex: 2,
+        // position: "relative",
+        // zIndex: 2,
         color: "white"
     },
     card: {
@@ -37,8 +37,8 @@ const styles = theme => ({
     },
     media: {
         height: "695px",
-        position: "relative",
-        zIndex: 2
+        // position: "relative",
+        // zIndex: 2
     },
     backgroundImage: {
         position: "absolute",
@@ -54,7 +54,7 @@ function HowItWorks(props) {
 
     return (
         <div>
-            <img className={classes.backgroundImage} src={prismBackground} />
+            {/* <img className={classes.backgroundImage} src={prismBackground} /> */}
             <div className={classes.root} id="How">
                 <Grid container spacing={40}>
                     <Grid item xs={12} md={6}>

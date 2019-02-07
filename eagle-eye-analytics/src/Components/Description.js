@@ -2,23 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Card, CardActionArea, CardMedia } from '@material-ui/core/';
-// import peopleTrackingImage from '../Assets/amazonRekognition.jpg'
 import pexelFriends from '../Assets/pexelFriends.png'
-import prismBackground from '../Assets/prism.png'
+// import prismBackground from '../Assets/prism.png'
 
-
-
-// const backgroundImage =
-//     'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/technology-network-loop-background_vxe4qnnce__F0000.png';
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         paddingTop: theme.spacing.unit * 20,
-        // paddingBottom: theme.spacing.unit * 20,
+        paddingBottom: theme.spacing.unit * 20,
         paddingLeft: theme.spacing.unit * 5,
         paddingRight: theme.spacing.unit * 5,
-        backgroundColor: "lightgrey"
+        backgroundColor: "grey"
     },
     paper: {
         height: "50vh",
@@ -29,14 +24,14 @@ const styles = theme => ({
     },
     media: {
         height: "695px",
-        position: "relative",
-        zIndex: 2
+        // position: "relative",
+        // zIndex: 2
     },
     text: {
         lineHeight: 2,
         paddingTop: "25vh",
-        position: "relative",
-        zIndex: 2,
+        // position: "relative",
+        // zIndex: 2,
         color: "white"
     },
     backgroundImage: {
@@ -53,7 +48,7 @@ function Description(props) {
 
     return (
         <div>
-            <img className={classes.backgroundImage} src={prismBackground} />
+            {/* <img className={classes.backgroundImage} src={prismBackground} /> */}
             <div className={classes.root} id="Description">
                 <Grid container spacing={40}>
                     <Grid item xs={12} md={6}>
