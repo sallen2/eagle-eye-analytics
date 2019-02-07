@@ -1,5 +1,5 @@
 var request = require("request");
-var plotly = require('plotly')("elbowphat", "fGpDVv2Zkazwb6ZjWz5u");
+var plotly = require('plotly')("jrewmohamed", "6noto7s5dcLCsE7roygS");
 var arr = [];
 var rem = [];
 var dirt = [];

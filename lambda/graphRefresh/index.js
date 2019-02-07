@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const request = require("request");
-var plotly = require('plotly')("elbowphat", "fGpDVv2Zkazwb6ZjWz5u");
+var plotly = require('plotly')("jrewmohamed", "6noto7s5dcLCsE7roygS");
 exports.handler = (event, context) => {
     var arr = [];
     var rem = [];
