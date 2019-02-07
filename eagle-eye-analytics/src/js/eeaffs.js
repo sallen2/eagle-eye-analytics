@@ -38,6 +38,201 @@ var xaxis3 = [];
         for (var t = 0; t < teetime.length; t++) {
             xaxis.push(t);
         }
+        for (var j = 0; j < arr.length; j++) {
+            rem.push(arr[j].replace(/:/g, ""))
+        }
+        for (var o = 0; o < rem.length; o++) {
+            dirt.push(rem[o].replace(/PM/g, ""));
+        }
+        dirt.sort(function (a, b) {
+            return a - b
+        });
+        dirt.forEach(function (x) {
+            counts[x] = (counts[x] || 0) + 1;
+        });
+        teetime = Object.values(counts);
+        for (var t = 0; t < teetime.length; t++) {
+            xaxis.push(t);
+            for (var j = 0; j < arr.length; j++) {
+                rem.push(arr[j].replace(/:/g, ""))
+            }
+            for (var o = 0; o < rem.length; o++) {
+                dirt.push(rem[o].replace(/PM/g, ""));
+            }
+            dirt.sort(function (a, b) {
+                return a - b
+            });
+            dirt.forEach(function (x) {
+                counts[x] = (counts[x] || 0) + 1;
+            });
+            teetime = Object.values(counts);
+            for (var t = 0; t < teetime.length; t++) {
+                xaxis.push(t);
+                for (var j = 0; j < arr.length; j++) {
+                    rem.push(arr[j].replace(/:/g, ""))
+                }
+                for (var o = 0; o < rem.length; o++) {
+                    dirt.push(rem[o].replace(/PM/g, ""));
+                }
+                dirt.sort(function (a, b) {
+                    return a - b
+                });
+                dirt.forEach(function (x) {
+                    counts[x] = (counts[x] || 0) + 1;
+                });
+                teetime = Object.values(counts);
+                for (var t = 0; t < teetime.length; t++) {
+                    xaxis.push(t);
+                    for (var j = 0; j < arr.length; j++) {
+                        rem.push(arr[j].replace(/:/g, ""))
+                    }
+                    for (var o = 0; o < rem.length; o++) {
+                        dirt.push(rem[o].replace(/PM/g, ""));
+                    }
+                    dirt.sort(function (a, b) {
+                        return a - b
+                    });
+                    dirt.forEach(function (x) {
+                        counts[x] = (counts[x] || 0) + 1;
+                    });
+                    teetime = Object.values(counts);
+                    for (var t = 0; t < teetime.length; t++) {
+                        xaxis.push(t);
+                        for (var j = 0; j < arr.length; j++) {
+                            rem.push(arr[j].replace(/:/g, ""))
+                        }
+                        for (var o = 0; o < rem.length; o++) {
+                            dirt.push(rem[o].replace(/PM/g, ""));
+                        }
+                        dirt.sort(function (a, b) {
+                            return a - b
+                        });
+                        dirt.forEach(function (x) {
+                            counts[x] = (counts[x] || 0) + 1;
+                        });
+                        teetime = Object.values(counts);
+                        for (var t = 0; t < teetime.length; t++) {
+                            xaxis.push(t);
+                            for (var j = 0; j < arr.length; j++) {
+                                rem.push(arr[j].replace(/:/g, ""))
+                            }
+                            for (var o = 0; o < rem.length; o++) {
+                                dirt.push(rem[o].replace(/PM/g, ""));
+                            }
+                            dirt.sort(function (a, b) {
+                                return a - b
+                            });
+                            dirt.forEach(function (x) {
+                                counts[x] = (counts[x] || 0) + 1;
+                            });
+                            teetime = Object.values(counts);
+                            for (var t = 0; t < teetime.length; t++) {
+                                xaxis.push(t);
+                                for (var j = 0; j < arr.length; j++) {
+                                    rem.push(arr[j].replace(/:/g, ""))
+                                }
+                                for (var o = 0; o < rem.length; o++) {
+                                    dirt.push(rem[o].replace(/PM/g, ""));
+                                }
+                                dirt.sort(function (a, b) {
+                                    return a - b
+                                });
+                                dirt.forEach(function (x) {
+                                    counts[x] = (counts[x] || 0) + 1;
+                                });
+                                teetime = Object.values(counts);
+                                for (var t = 0; t < teetime.length; t++) {
+                                    xaxis.push(t);
+                                    for (var j = 0; j < arr.length; j++) {
+                                        rem.push(arr[j].replace(/:/g, ""))
+                                    }
+                                    for (var o = 0; o < rem.length; o++) {
+                                        dirt.push(rem[o].replace(/PM/g, ""));
+                                    }
+                                    dirt.sort(function (a, b) {
+                                        return a - b
+                                    });
+                                    dirt.forEach(function (x) {
+                                        counts[x] = (counts[x] || 0) + 1;
+                                    });
+                                    teetime = Object.values(counts);
+                                    for (var t = 0; t < teetime.length; t++) {
+                                        xaxis.push(t);
+                                        for (var j = 0; j < arr.length; j++) {
+                                            rem.push(arr[j].replace(/:/g, ""))
+                                        }
+                                        for (var o = 0; o < rem.length; o++) {
+                                            dirt.push(rem[o].replace(/PM/g, ""));
+                                        }
+                                        dirt.sort(function (a, b) {
+                                            return a - b
+                                        });
+                                        dirt.forEach(function (x) {
+                                            counts[x] = (counts[x] || 0) + 1;
+                                        });
+                                        teetime = Object.values(counts);
+                                        for (var t = 0; t < teetime.length; t++) {
+                                            xaxis.push(t);
+                                            for (var j = 0; j < arr.length; j++) {
+                                                rem.push(arr[j].replace(/:/g, ""))
+                                            }
+                                            for (var o = 0; o < rem.length; o++) {
+                                                dirt.push(rem[o].replace(/PM/g, ""));
+                                            }
+                                            dirt.sort(function (a, b) {
+                                                return a - b
+                                            });
+                                            dirt.forEach(function (x) {
+                                                counts[x] = (counts[x] || 0) + 1;
+                                            });
+                                            teetime = Object.values(counts);
+                                            for (var t = 0; t < teetime.length; t++) {
+                                                xaxis.push(t);
+                                                for (var j = 0; j < arr.length; j++) {
+                                                    rem.push(arr[j].replace(/:/g, ""))
+                                                }
+                                                for (var o = 0; o < rem.length; o++) {
+                                                    dirt.push(rem[o].replace(/PM/g, ""));
+                                                }
+                                                dirt.sort(function (a, b) {
+                                                    return a - b
+                                                });
+                                                dirt.forEach(function (x) {
+                                                    counts[x] = (counts[x] || 0) + 1;
+                                                });
+                                                teetime = Object.values(counts);
+                                                for (var t = 0; t < teetime.length; t++) {
+                                                    xaxis.push(t);
+                                                    for (var j = 0; j < arr.length; j++) {
+                                                        rem.push(arr[j].replace(/:/g, ""))
+                                                    }
+                                                    for (var o = 0; o < rem.length; o++) {
+                                                        dirt.push(rem[o].replace(/PM/g, ""));
+                                                    }
+                                                    dirt.sort(function (a, b) {
+                                                        return a - b
+                                                    });
+                                                    dirt.forEach(function (x) {
+                                                        counts[x] = (counts[x] || 0) + 1;
+                                                    });
+                                                    teetime = Object.values(counts);
+                                                    for (var t = 0; t < teetime.length; t++) {
+                                                        xaxis.push(t);
+                                                        for (var j = 0; j < arr.length; j++) {
+                                                            rem.push(arr[j].replace(/:/g, ""))
+                                                        }
+                                                        for (var o = 0; o < rem.length; o++) {
+                                                            dirt.push(rem[o].replace(/PM/g, ""));
+                                                        }
+                                                        dirt.sort(function (a, b) {
+                                                            return a - b
+                                                        });
+                                                        dirt.forEach(function (x) {
+                                                            counts[x] = (counts[x] || 0) + 1;
+                                                        });
+                                                        teetime = Object.values(counts);
+                                                        for (var t = 0; t < teetime.length; t++) {
+                                                            xaxis.push(t);
 //22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
         request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", function (error, response, body) {
             if (!error && response.statusCode === 200) {
