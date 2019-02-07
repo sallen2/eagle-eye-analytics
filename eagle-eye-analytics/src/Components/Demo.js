@@ -39,13 +39,13 @@ function Demo(props) {
                         <Typography variant="h4" className={classes.title}>
                             Peak Times Per Booth 
                         </Typography>
-                        <iframe width="700" height="700" frameBorder="0" scrolling="no" align="left" src="//plot.ly/~all22_NFL/0.embed"></iframe>
+                        <iframe width="700" height="700" frameBorder="0" scrolling="no" align="left" src="//plot.ly/~all22_NFL/8.embed"></iframe>
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <Typography variant="h4" className={classes.title}>
                             Percent Per Booth
                         </Typography>
-                        <iframe width="700" height="700" frameBorder="0" scrolling="no" align="right" src="//plot.ly/~all22_NFL/4.embed"></iframe>
+                        <iframe width="700" height="700" frameBorder="0" scrolling="no" align="right" src="//plot.ly/~all22_NFL/10.embed"></iframe>
                     </Grid>
                 </Grid>
                     {/* <img style={{ display: 'block' }} src={plotlyImage} alt="" /> */}
