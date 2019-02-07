@@ -44,13 +44,13 @@ function Demo(props) {
                         <Typography variant="h4" className={classes.title}>
                             Aggregate Percent Per Booth
                         </Typography>
-                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no"  src="//plot.ly/~all22_NFL/10.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no"  src="//plot.ly/~elbowphat/0/#/"></iframe>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography variant="h4" className={classes.title}>
                             Percent of Uniques
                         </Typography>
-                        <iframe key={props.refresh} width="700" height="700" frameborder="0"  scrolling="no" src="//plot.ly/~all22_NFL/12.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameborder="0"  scrolling="no" src="//plot.ly/~elbowphat/6.embed"></iframe>
                     </Grid>
                 </Grid>
                 <Grid container className={classes.bottomGrids}>
@@ -58,13 +58,13 @@ function Demo(props) {
                         <Typography variant="h4" className={classes.title}>
                             Concentration Over Time
                         </Typography>
-                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no" src="//plot.ly/~all22_NFL/8.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no" src="//plot.ly/~elbowphat/2/cam-1-crowd-concentration-cam-2-cc-cam-3-cc-cam-4-cc/#/"></iframe>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography variant="h4" className={classes.title}>
                             Unique Counts 
                         </Typography>
-                        <iframe key={props.refresh} width="700" height="700" frameborder="0" scrolling="no" src="//plot.ly/~all22_NFL/2.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameborder="0" scrolling="no" src="//plot.ly/~elbowphat/4/#/"></iframe>
                     </Grid>
                 </Grid>
                     {/* <img style={{ display: 'block' }} src={plotlyImage} alt="" /> */}
