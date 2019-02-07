@@ -27,13 +27,12 @@ class WebCamScan extends Component {
     this.setState({ eagleStart: !this.state.eagleStart })
     let stopInterval = setInterval(() => {
       if (this.state.eagleStart) {
-        console.log('invoked')
         var params = {
           FunctionName: 'eagleeye-upload'
         }
         lambda.invoke(params, (err, data) => {
           if (err) throw err
-          else console.log('invoked!')
+          else return
         })
       } else {
         console.log('stop')
@@ -53,7 +52,6 @@ class WebCamScan extends Component {
               url,
               booth: 'booth1'
             }
-            console.log(data)
             resolve(data)
           } else if (match.startsWith('cam2')) {
             const data = {
@@ -156,20 +154,6 @@ class WebCamScan extends Component {
     })
   }
 
-  refreshGraph = () => {
-    var params = {
-      FunctionName: 'graphrefresh'
-    }
-    lambda.invoke(params, (err, data) => {
-      if (err) {
-        console.log(err)
-        throw err
-      } else {
-        console.log(data)
-      }
-    })
-  }
-
   capture = () => {
     const arr = ['cam1', 'cam2', 'cam3', 'cam4']
     console.log('captured')
@@ -219,7 +203,6 @@ class WebCamScan extends Component {
     }
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.refreshGraph}>Refresh Graph</Button>
         <Button variant="outlined" color="primary" onClick={this.resetCollection}>Reset Collection</Button>
         <Button variant="outlined" color="primary" onClick={this.startEagleEye}>Start Eagle Eye</Button>
         <Webcam

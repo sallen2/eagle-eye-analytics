@@ -32,6 +32,7 @@ const styles = theme => ({
 
 function Demo(props) {
     const { classes } = props;
+    console.log('inside demo',props.refresh)
     return (
         <section className={classes.root} id="Cams">
                 <Grid container>
@@ -39,13 +40,13 @@ function Demo(props) {
                         <Typography variant="h4" className={classes.title}>
                             Peak Times Per Booth 
                         </Typography>
-                        <iframe width="700" height="700" frameBorder="0" scrolling="no" align="left" src="//plot.ly/~all22_NFL/8.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no" align="left" src="//plot.ly/~all22_NFL/8.embed"></iframe>
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <Typography variant="h4" className={classes.title}>
                             Percent Per Booth
                         </Typography>
-                        <iframe width="700" height="700" frameBorder="0" scrolling="no" align="right" src="//plot.ly/~all22_NFL/10.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no" align="right" src="//plot.ly/~all22_NFL/10.embed"></iframe>
                     </Grid>
                 </Grid>
                     {/* <img style={{ display: 'block' }} src={plotlyImage} alt="" /> */}
