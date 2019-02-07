@@ -28,6 +28,7 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static" className={classes.color}>
         <Toolbar>
+          <img src='./2-22708_eagle-eye-clip-art.png' width='40px' height="40px" />
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Eagle Eye Analytics
           </Typography>
