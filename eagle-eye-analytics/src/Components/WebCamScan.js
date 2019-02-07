@@ -156,22 +156,22 @@ class WebCamScan extends Component {
     })
   }
 
-  refreshGraph = () =>{
+  refreshGraph = () => {
     var params = {
       FunctionName: 'graphrefresh'
     }
-    lambda.invoke(params, (err,data)=>{
-      if(err){
+    lambda.invoke(params, (err, data) => {
+      if (err) {
         console.log(err)
         throw err
-      }else{
+      } else {
         console.log(data)
       }
     })
   }
 
   capture = () => {
-    const arr = ['cam11', 'cam22', 'cam33', 'cam44']
+    const arr = ['cam1', 'cam2', 'cam3', 'cam4']
     console.log('captured')
     const sourceImage = this.webcam.getScreenshot();
     const s3 = new AWS.S3()
@@ -185,6 +185,7 @@ class WebCamScan extends Component {
       }
     }))
       .then(async data => {
+        console.log(data)
         const ImageId = data.map(imageId => {
           if (imageId.FaceMatches.length === 0) {
             return []
@@ -204,9 +205,9 @@ class WebCamScan extends Component {
         }
       })
       .then(data => {
-        const urlsData = data.Payload
-        console.log(urlsData)
-        // this.setState({ urlsData })
+        const Data = data.Payload
+        const urlsData = JSON.parse(Data)
+        this.setState({ urlsData })
       })
   }
 
@@ -230,7 +231,7 @@ class WebCamScan extends Component {
           videoConstraints={videoConstraints}
         />
         <Button variant="outlined" color="primary" onClick={this.capture}>Scan Face</Button>
-        {this.state.urlsData.map((data, i) => {
+        {/* {this.state.urlsData.map((data, i) => {
           if (data.url === null) {
             return
           } else {
@@ -240,6 +241,21 @@ class WebCamScan extends Component {
                 <img alt='eagleeye' src={data.url} />
               </div>
             )
+          }
+        })} */}
+        {this.state.urlsData.map((arr, booth) => {
+          if (arr.length === 0) {
+            return
+          } else {
+            return arr.map((url, i) => {
+              console.log(url)
+              return (
+                <div>
+                  <h1>Booth: {booth+1} </h1>
+                  <img key={i} alt="faces" src={url} />
+                </div>
+              )
+            })
           }
         })}
       </div>
