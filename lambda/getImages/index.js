@@ -3,13 +3,14 @@ const s3 = new AWS.S3()
 const Promise = require('bluebird')
 
 const getUrls = (ImageId) => {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const params = { Bucket: 'engleeyebucket', Key: `${ImageId}.jpg` };
     const url = s3.getSignedUrl('getObject', params, (err, url) => {
       if (err) {
         console.log(err)
         reject(err)
       } else {
+        console.log(url)
         resolve(url)
       }
     });
@@ -21,6 +22,7 @@ exports.handler = (event, context, callback) => {
     return Promise.all(ImageIds.map(async imageId => {
       try {
         const url = await getUrls(imageId)
+        console.log(url)
         return url
       } catch (err) {
         console.log(err)
@@ -28,6 +30,7 @@ exports.handler = (event, context, callback) => {
       }
     }))
       .then(url => {
+        console.log(url)
         return url
       })
   }))
