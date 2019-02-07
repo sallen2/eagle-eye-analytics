@@ -7,10 +7,14 @@ import plotlyImage from '../Assets/newplot.png'
 const styles = theme => ({
     root: {
         marginTop: theme.spacing.unit * 20,
-        height: "100vh",
+        // paddingBottom: theme.spacing.unit * 20,
+        height: "100%",
         // backgroundColor: "lightgrey",
         overflow: 'hidden',
         borderRadius: 5
+    },
+    bottomGrids: {
+        paddingTop: theme.spacing.unit *30
     },
     title: {
         textAlign: "center",
@@ -36,17 +40,31 @@ function Demo(props) {
     return (
         <section className={classes.root} id="Cams">
                 <Grid container>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={6}>
                         <Typography variant="h4" className={classes.title}>
-                            Peak Times Per Booth 
+                            Aggregate Percent Per Booth
                         </Typography>
-                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no" align="left" src="//plot.ly/~all22_NFL/8.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no"  src="//plot.ly/~all22_NFL/10.embed"></iframe>
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={6}>
                         <Typography variant="h4" className={classes.title}>
-                            Percent Per Booth
+                            Percent of Uniques
                         </Typography>
-                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no" align="right" src="//plot.ly/~all22_NFL/10.embed"></iframe>
+                        <iframe key={props.refresh} width="700" height="700" frameborder="0"  scrolling="no" src="//plot.ly/~all22_NFL/12.embed"></iframe>
+                    </Grid>
+                </Grid>
+                <Grid container className={classes.bottomGrids}>
+                    <Grid item xs={6}>
+                        <Typography variant="h4" className={classes.title}>
+                            Concentration Over Time
+                        </Typography>
+                        <iframe key={props.refresh} width="700" height="700" frameBorder="0" scrolling="no" src="//plot.ly/~all22_NFL/8.embed"></iframe>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography variant="h4" className={classes.title}>
+                            Unique Counts 
+                        </Typography>
+                        <iframe key={props.refresh} width="700" height="700" frameborder="0" scrolling="no" src="//plot.ly/~all22_NFL/2.embed"></iframe>
                     </Grid>
                 </Grid>
                     {/* <img style={{ display: 'block' }} src={plotlyImage} alt="" /> */}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Card, CardActionArea, CardMedia } from '@material-ui/core/';
-import Jrew from '../Assets/Jrew.jpg';
+import Jrew from '../Assets/jrewProfile.jpg';
 import Uday from '../Assets/uday.jpeg';
 import Stephan from '../Assets/stephan.jpeg';
 import Jeremy from '../Assets/jeremy.jpeg';
