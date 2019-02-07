@@ -4,6 +4,7 @@ import Webcam from 'react-webcam'
 import Promise from 'bluebird'
 import Button from '@material-ui/core/Button';
 
+
 AWS.config.update({
   secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
   accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,

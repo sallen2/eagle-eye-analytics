@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 const backgroundImage =
     'https://bitcoinist.com/wp-content/uploads/2018/10/shutterstock_567338095-e1540273758803.jpg';
 
-const styles = {
+const styles = theme => ({
     header: {
         color: "white",
         paddingTop: 200
@@ -42,10 +42,11 @@ const styles = {
         fontSize: 50,
         color: "white",
         transform: "translate(-50%,-50%)",
-        msTransform: "translate(-50%,-50%)"
+        msTransform: "translate(-50%,-50%)",
+        zIndex: 2
     }
 
-};
+});
 
 function Hook(props) {
     const { classes } = props;

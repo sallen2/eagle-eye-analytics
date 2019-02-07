@@ -6,6 +6,9 @@ import Description from './Components/Description';
 import Demo from './Components/Demo';
 import WebCamScan from './Components/WebCamScan';
 import Button from '@material-ui/core/Button';
+import HowItWorks from './Components/HowItWorks';
+import TheTeam from './Components/TheTeam';
+import backupPlotly from './Assets/newplot.png';
 
 class App extends Component {
 
@@ -24,11 +27,18 @@ class App extends Component {
         <Header />
         <Hook />
         <Description />
+        <HowItWorks />
+        <TheTeam />
         <Demo />
-        <div style={{ marginLeft: '25.5%' }}>
+        {/* <img src={backupPlotly} /> */}
+        <div style={{ paddingLeft: '5%' }}>
           {this.state.showCam ? <WebCamScan /> : null}
         </div>
-        <Button style={{ marginLeft: '44.5%' }} variant="outlined" onClick={this.showCam} color="primary">
+        <Button 
+          style={{ marginLeft: '47%', marginBottom: '5%' }} 
+          variant="outlined" 
+          onClick={this.showCam} 
+          color="primary">
           Toggle Cam
         </Button>
       </div>
