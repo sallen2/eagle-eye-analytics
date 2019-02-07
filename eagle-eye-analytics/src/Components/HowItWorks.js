@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Card, CardActionArea, CardMedia } from '@material-ui/core/';
 // import pexelIphone from '../Assets/iphoneRekognition.jpg'
-import pexelIphone from '../Assets/pexelIphone.png'
+import pexelCity from '../Assets/pexelCity.png'
 // import prismBackground from '../Assets/prism.png'
 
-
-
-// const backgroundImage = prismBackground;
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         // paddingTop: theme.spacing.unit * 20,
-        paddingBottom: theme.spacing.unit * 20,
+        paddingBottom: theme.spacing.unit * 10,
         paddingLeft: theme.spacing.unit * 5,
         paddingRight: theme.spacing.unit * 5,
         backgroundColor: "grey",
@@ -73,7 +70,7 @@ function HowItWorks(props) {
                             <CardActionArea>
                                 <CardMedia
                                     className={classes.media}
-                                    image={pexelIphone}
+                                    image={pexelCity}
                                     title=""
                                 />
                             </CardActionArea>

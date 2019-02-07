@@ -208,10 +208,10 @@ class WebCamScan extends Component {
         <Button variant="outlined" color="primary" onClick={this.startEagleEye}>Start Eagle Eye</Button>
         <Webcam
           audio={false}
-          height={1000}
+          height={700}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={1000}
+          width={700}
           videoConstraints={videoConstraints}
         />
         <Button variant="outlined" color="primary" onClick={this.capture}>Scan Face</Button>
