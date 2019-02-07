@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Card, CardActionArea, CardMedia } from '@material-ui/core/';
-import Jrew from '../Assets/Jrew.jpg';
+import Jrew from '../Assets/jrewProfile.jpg';
 import Uday from '../Assets/uday.jpeg';
 import Stephan from '../Assets/stephan.jpeg';
 import Jeremy from '../Assets/jeremy.jpeg';
@@ -36,16 +36,16 @@ const styles = theme => ({
         textAlign: "center",
     },
     imagePosition: {
-        marginLeft: "5%"
+        marginLeft: "20%"
     },
     card: {
         // 911 × 607
         height: 300,
         width: 300,
-        borderRadius: "100%"
+        borderRadius: "100%",
     },
     media: {
-        height: "60vh",
+        // height: "60vh",
         position: "relative",
         // left: -10,
         // zIndex: 2
@@ -72,15 +72,7 @@ function TheTeam(props) {
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <div className={classes.imagePosition}>
-                            <Card className={classes.card} raised="true">
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={Jrew}
-                                        title=""
-                                    />
-                                </CardActionArea>
-                            </Card>
+                            <img className={classes.card} src={Jrew} />
                         </div>
                         <div className={classes.paper}>
                             <Typography className={classes.text} variant="h4">Jrew Mohamed</Typography>
@@ -91,15 +83,7 @@ function TheTeam(props) {
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <div className={classes.imagePosition}>
-                            <Card className={classes.card} raised="true">
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={Uday}
-                                        title=""
-                                    />
-                                </CardActionArea>
-                            </Card>
+                            <img className={classes.card} src={Uday} />
                         </div>
                         <div className={classes.paper}>
                             <Typography className={classes.text} variant="h4">Uday Sachdeva</Typography>
@@ -110,15 +94,7 @@ function TheTeam(props) {
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <div className={classes.imagePosition}>
-                            <Card className={classes.card} raised="true">
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={Stephan}
-                                        title=""
-                                    />
-                                </CardActionArea>
-                            </Card>
+                            <img className={classes.card} src={Stephan} />
                         </div>
                         <div className={classes.paper}>
                             <Typography className={classes.text} variant="h4">Stephan Allen</Typography>
@@ -129,15 +105,7 @@ function TheTeam(props) {
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <div className={classes.imagePosition}>
-                            <Card className={classes.card} raised="true">
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={Jeremy}
-                                        title=""
-                                    />
-                                </CardActionArea>
-                            </Card>
+                        <img className={classes.card} src={Jeremy} />
                         </div>
                         <div className={classes.paper}>
                             <Typography className={classes.text} variant="h4">Jeremy Swain</Typography>
