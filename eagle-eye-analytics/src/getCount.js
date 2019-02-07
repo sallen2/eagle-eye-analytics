@@ -1,5 +1,5 @@
 var request = require("request");
-var plotly = require('plotly')("all22_NFL", "ff4GiZBfgbw6eIrl9l5U");
+var plotly = require('plotly')("elbowphat", "fGpDVv2Zkazwb6ZjWz5u");
 var arr = [];
 var rem = [];
 var dirt = [];
@@ -130,8 +130,8 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 y: teetime2,
                 fill: "tozeroy",
                 type: "scatter",
-                fillcolor: "#ADE25D",
                 color: "#ADE25D",
+                fillcolor: "#ADE25D",
                 name: "Cam 2 CC",
                 maxpoints: 10000,
                 size: 5
@@ -159,7 +159,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 size: 5
             };
             var data = [trace1, trace2, trace3, trace4];
-            var graphOptions = {filename: "line1", fileopt: "overwrite"};
+            var graphOptions = {filename: "line2", fileopt: "overwrite"};
             plotly.plot(data, graphOptions, function (err, msg) {
                 console.log(msg);
             });
@@ -172,7 +172,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 type: 'pie'
 
             }];
-            var graphOptions = {filename: "circle1", fileopt: "overwrite"};
+            var graphOptions = {filename: "circle2", fileopt: "overwrite"};
             plotly.plot(circdata, graphOptions, function (err, msg) {
                 console.log(msg)
             });
@@ -196,7 +196,7 @@ request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", functio
             type: 'pie'
 
         }];
-        var graphOptions = {filename: "circle1unique", fileopt: "overwrite"};
+        var graphOptions = {filename: "circle2u", fileopt: "overwrite"};
         plotly.plot(circdata, graphOptions, function (err, msg) {
             console.log(msg)
         });
@@ -209,7 +209,7 @@ request("https://z324d5afl4.execute-api.us-east-1.amazonaws.com/latest", functio
                 type: "bar"
             }
         ];
-        var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
+        var graphOptions = {filename: "barnone", fileopt: "overwrite"};
         plotly.plot(bardata, graphOptions, function (err, msg) {
             console.log(msg);
         });

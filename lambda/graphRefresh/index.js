@@ -1,6 +1,6 @@
-const AWS = require('aws-sdk')
+const AWS = require('aws-sdk');
 const request = require("request");
-const plotly = require('plotly')("all22_NFL", "ff4GiZBfgbw6eIrl9l5U");
+var plotly = require('plotly')("elbowphat", "fGpDVv2Zkazwb6ZjWz5u");
 exports.handler = (event, context) => {
     var arr = [];
     var rem = [];
@@ -132,8 +132,8 @@ exports.handler = (event, context) => {
                     y: teetime2,
                     fill: "tozeroy",
                     type: "scatter",
-                    fillcolor: "#ADE25D",
                     color: "#ADE25D",
+                    fillcolor: "#ADE25D",
                     name: "Cam 2 CC",
                     maxpoints: 10000,
                     size: 5
@@ -161,7 +161,7 @@ exports.handler = (event, context) => {
                     size: 5
                 };
                 var data = [trace1, trace2, trace3, trace4];
-                var graphOptions = {filename: "line1", fileopt: "overwrite"};
+                var graphOptions = {filename: "line2", fileopt: "overwrite"};
                 plotly.plot(data, graphOptions, function (err, msg) {
                     console.log(msg);
                 });
@@ -174,7 +174,7 @@ exports.handler = (event, context) => {
                     type: 'pie'
 
                 }];
-                var graphOptions = {filename: "circle1", fileopt: "overwrite"};
+                var graphOptions = {filename: "circle2", fileopt: "overwrite"};
                 plotly.plot(circdata, graphOptions, function (err, msg) {
                     console.log(msg)
                 });
@@ -198,7 +198,7 @@ exports.handler = (event, context) => {
                 type: 'pie'
 
             }];
-            var graphOptions = {filename: "circle1unique", fileopt: "overwrite"};
+            var graphOptions = {filename: "circle2u", fileopt: "overwrite"};
             plotly.plot(circdata, graphOptions, function (err, msg) {
                 console.log(msg)
             });
@@ -211,10 +211,12 @@ exports.handler = (event, context) => {
                     type: "bar"
                 }
             ];
-            var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
+            var graphOptions = {filename: "barnone", fileopt: "overwrite"};
             plotly.plot(bardata, graphOptions, function (err, msg) {
                 console.log(msg);
             });
         }
     });
-};
+
+}
+;
