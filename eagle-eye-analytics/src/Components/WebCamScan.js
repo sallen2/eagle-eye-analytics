@@ -155,6 +155,20 @@ class WebCamScan extends Component {
     })
   }
 
+  refreshGraph = () =>{
+    var params = {
+      FunctionName: 'graphrefresh'
+    }
+    lambda.invoke(params, (err,data)=>{
+      if(err){
+        console.log(err)
+        throw err
+      }else{
+        console.log(data)
+      }
+    })
+  }
+
   capture = () => {
     const arr = ['cam11', 'cam22', 'cam33', 'cam44']
     console.log('captured')
@@ -203,6 +217,7 @@ class WebCamScan extends Component {
     }
     return (
       <div>
+        <Button variant="outlined" color="primary" onClick={this.refreshGraph}>Refresh Graph</Button>
         <Button variant="outlined" color="primary" onClick={this.resetCollection}>Reset Collection</Button>
         <Button variant="outlined" color="primary" onClick={this.startEagleEye}>Start Eagle Eye</Button>
         <Webcam
