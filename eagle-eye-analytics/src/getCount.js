@@ -159,7 +159,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 size: 5
             };
         var data = [trace1, trace2, trace3, trace4];
-        var graphOptions = {filename: "basic-area", fileopt: "overwrite"};
+        var graphOptions = {filename: "line1", fileopt: "overwrite"};
         plotly.plot(data, graphOptions, function (err, msg) {
             console.log(msg);
         });
@@ -171,7 +171,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
                 type: 'pie'
 
             }];
-            var graphOptions = {filename: "basic-pie", fileopt: "overwrite"};
+            var graphOptions = {filename: "circle1", fileopt: "overwrite"};
             plotly.plot(circdata, graphOptions, function (err, msg) {
                 console.log(msg)
             });
