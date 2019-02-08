@@ -117,7 +117,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             var trace1 = {
                 x: xaxis,
                 y: teetime,
-                fill: "tozeroy",
+                fill: "none",
                 type: "scatter",
                 color: "#CFFFB3",
                 fillcolor: "#CFFFB3",
@@ -128,7 +128,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             var trace2 = {
                 x: xaxis2,
                 y: teetime2,
-                fill: "tozeroy",
+                fill: "none",
                 type: "scatter",
                 color: "#ADE25D",
                 fillcolor: "#ADE25D",
@@ -139,7 +139,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             var trace3 = {
                 x: xaxis3,
                 y: teetime3,
-                fill: "tozeroy",
+                fill: "none",
                 type: "scatter",
                 fillcolor: "#1E91D6",
                 color: "#1E91D6",
@@ -150,7 +150,7 @@ request("https://wzy74zfyd3.execute-api.us-east-1.amazonaws.com/latest", functio
             var trace4 = {
                 x: xaxis4,
                 y: teetime4,
-                fill: "tonexty",
+                fill: "none",
                 type: "scatter",
                 color: "#0D00A4",
                 fillcolor: "#0D00A4",
